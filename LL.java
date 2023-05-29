@@ -198,19 +198,19 @@ public class LL {
 				    		System.out.println("This pokemon is already in Party. Cannot be added again.");
 				    		
 				    	}
-				    	if(length>6) {
+				    	if(length>=6) {
 				    		System.out.println("The party is already full. Remove one to add another.");
 				    		
 				    	}
-				    	else if (inParty==false & length<=6){
-					    	for(int i = 0;i< pkmnBox.length;i++){
-					    		if(pkmn_node.equals(pkmnBox[i][1])){
-									LLNode newPkmn = new LLNode(pkmnBox[i]);
-									addToParty(newPkmn);
-									System.out.println(newPkmn.pokemon[1]+"   (lvl. "+newPkmn.pokemon[4]+" ). "+ "  Added to Party" );
-									displayParty(this.head);
-					    	}
-				    	}
+				    	
+					    for(int i = 0;i< pkmnBox.length;i++){
+					    	if(pkmn_node.equals(pkmnBox[i][1]) & inParty==false & length<6){
+								LLNode newPkmn = new LLNode(pkmnBox[i]);
+								addToParty(newPkmn);
+								System.out.println(newPkmn.pokemon[1]+"   (lvl. "+newPkmn.pokemon[4]+" ). "+ "  Added to Party" );
+								displayParty(this.head);
+					    }
+				    	
 				}
 				}  	
 		
@@ -715,10 +715,12 @@ This method DOES NOT remove the Pokémon from the linked list.
     	while(current.next!=null) {
     		if(current.pokemon[1].equals(getPokemon)) {
     			inParty=true;
+				break;
     		}
     		else {
     			inParty=false;
     		}
+			current=current.next;
     	}
     	
     	if(current.next==null) {
